@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "jest": "^29.0.2"
+  },
+  "scripts": {
+    "test": "jest --json --outputFile=results.json",
+    "prepare": "husky install",
+    "postinstall": "husky install"
+
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write ."
+    ]
+  }
+
+}

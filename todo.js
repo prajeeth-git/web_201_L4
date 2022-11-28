@@ -1,54 +1,30 @@
+
 const todoList = () => {
-  all = []
+  let all = [];
   const add = (todoItem) => {
-    all.push(todoItem)
-  }
+    all.push(todoItem);
+  };
   const markAsComplete = (index) => {
-    all[index].completed = true
-  }
+    all[index].completed = true;
+  };
 
   const overdue = () => {
-    let empty=[],status="[ ]";
-    for(let i of all){
-      if(i.dueDate===yesterday){
-          if(i.completed===true){
-              status="[x]"
-          }
-          empty.push(`${status} ${i.title} ${i.dueDate}`)
-          status="[ ]"
-      }
-    }
-    return empty
-  }
+    return all.filter(
+      (item) => item.dueDate < new Date().toLocaleDateString("en-CA")
+    );
+  };
 
   const dueToday = () => {
-      let empty=[],status="[ ]";
-      for(let i of all){
-        if(i.dueDate===today){
-            if(i.completed===true){
-                status="[x]"
-            }
-            empty.push(`${status} ${i.title}`)
-            status="[ ]"
-        }
-      }
-      return empty
-  }
+    return all.filter(
+      (item) => item.dueDate === new Date().toLocaleDateString("en-CA")
+    );
+  };
 
   const dueLater = () => {
-      let empty=[],status="[ ]";
-      for(let i of all){
-        if(i.dueDate===tomorrow){
-            if(i.completed===true){
-                status="[x]"
-            }
-            empty.push(`${status} ${i.title} ${i.dueDate}`)
-            status="[ ]"
-        }
-      }
-      return empty
-  }
-
+    return all.filter(
+      (item) => item.dueDate > new Date().toLocaleDateString("en-CA")
+    );
+  };
   return { all, add, markAsComplete, overdue, dueToday, dueLater };
 };
 
